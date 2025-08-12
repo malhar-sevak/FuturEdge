@@ -1,0 +1,45 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block title %}Career Recommendation Form{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center min-vh-100 bg-img-form" style="position: relative;">
+  <div class="card shadow-lg p-4" style="width: 600px; border-radius: 18px; background: #fffbe7; opacity: 0.97;">
+    <h2 class="text-center mb-4" style="color: #2d6cdf; font-weight: bold;">Career Recommendation Form</h2>
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        {{ form.name.label_tag }}
+        {{ form.name }}
+      </div>
+      <div class="mb-3">
+        {{ form.age.label_tag }}
+        {{ form.age }}
+      </div>
+      <div class="mb-3">
+        {{ form.qualification.label_tag }}
+        {{ form.qualification }}
+      </div>
+      <div class="mb-3">
+        {{ form.skills.label_tag }}
+        {{ form.skills }}
+      </div>
+      <div class="mb-3">
+        {{ form.interests.label_tag }}
+        {{ form.interests }}
+      </div>
+      <button type="submit" class="btn btn-gradient w-100" style="background: linear-gradient(90deg, #2d6cdf 0%, #6ee7b7 100%); color: #fff; font-weight: bold; border: none;">Get Recommendation</button>
+    </form>
+  </div>
+</div>
+<style>
+  .bg-img-form {
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+    background-size: cover;
+  }
+  .btn-gradient:hover {
+    background: linear-gradient(90deg, #6ee7b7 0%, #2d6cdf 100%) !important;
+    color: #fff !important;
+  }
+</style>
+{% endblock %}

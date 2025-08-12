@@ -1,0 +1,96 @@
+{% extends "main.html" %}
+{% block content %}
+<style>
+  body {
+    background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+    min-height: 100vh;
+  }
+  .dashboard-section {
+    margin-bottom: 2.5rem;
+  }
+  .dashboard-icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    color: #2d6cdf;
+  }
+  .dashboard-card {
+    border-radius: 1.2rem;
+    box-shadow: 0 8px 32px rgba(45, 108, 223, 0.08);
+    background: rgba(255,255,255,0.97);
+  }
+  .dashboard-title {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+</style>
+<div class="container py-5">
+  <h2 class="text-center mb-5 dashboard-title">Welcome, {{ user.username }}!</h2>
+  <div class="row justify-content-center dashboard-section">
+    <div class="col-md-8 mx-auto">
+      <div class="card dashboard-card shadow p-4">
+        <div class="dashboard-icon text-center mb-2">👤</div>
+        <h4 class="mb-3 text-center">Your Profile</h4>
+        <ul class="list-group list-group-flush mb-3">
+          <li class="list-group-item"><strong>Username:</strong> {{ user.username }}</li>
+          <li class="list-group-item"><strong>Joined:</strong> {{ user.date_joined|date:'Y-m-d' }}</li>
+        </ul>
+        <a href="{% url 'career_history' %}" class="btn btn-primary w-100">View My Career History</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center dashboard-section">
+    <div class="col-12">
+      <div class="card border-success dashboard-card shadow-sm mb-3 animate__animated animate__pulse animate__faster">
+        <div class="card-body text-center">
+          <div class="dashboard-icon">🚀</div>
+          <h4 class="card-title text-success mb-2">Ready for Your Next Step?</h4>
+          <p class="card-text mb-3" style="font-size:1.1rem;">Discover new career possibilities tailored just for you. Click below to get your next personalized recommendation!</p>
+          <a href="{% url 'career_recommendation' %}" class="btn btn-lg btn-success px-5 py-2" style="font-size:1.2rem; font-weight:600; letter-spacing:0.5px;">Get New Recommendation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  {% if recent_recs %}
+  <div class="row justify-content-center dashboard-section">
+    <div class="col-12">
+      <div class="card shadow-sm border-info dashboard-card">
+        <div class="card-header bg-info text-white fw-bold text-center">
+          <span class="dashboard-icon">💡</span> Recent Recommendations
+        </div>
+        <ul class="list-group list-group-flush">
+          {% for rec in recent_recs %}
+          <li class="list-group-item">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+              <div>
+                <span class="fw-bold">{{ rec.predicted_career }}</span>
+                <span class="text-muted small ms-2">({{ rec.created_at|date:'Y-m-d H:i' }})</span>
+              </div>
+              <div class="text-muted small">
+                <span>Skills: {{ rec.skills }}</span> | <span>Interests: {{ rec.interest }}</span>
+              </div>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="row justify-content-center mb-5 mt-5 pt-4 dashboard-section">
+    <div class="col-12">
+      <div class="card border-info shadow-sm dashboard-card animate__animated animate__pulse animate__faster">
+        <div class="card-body text-center">
+          <div class="dashboard-icon">💬</div>
+          <h4 class="card-title text-info mb-2">We Value Your Feedback!</h4>
+          <p class="card-text mb-3" style="font-size:1.1rem;">Help us improve your experience. Share your thoughts, suggestions, or issues with us below.</p>
+          <a href="{% url 'feedback' %}" class="btn btn-lg btn-outline-info px-5 py-2" style="font-size:1.2rem; font-weight:600; letter-spacing:0.5px;">Submit Feedback</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+  body {
+    background: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+    background-size: cover;
+  }
+  .card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 123, 255, 0.10);
+    background: rgba(255,255,255,0.95);
+  }
+  .card-title {
+    color: #007BFF;
+    font-weight: 600;
+  }
+  .btn-primary {
+    background-color: #007BFF;
+    border: none;
+  }
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  a {
+    color: #007BFF;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
+        <h3 class="card-title text-center mb-3">Login</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+            {% if error %}
+            <div class="alert alert-danger mt-2">
+                {{ error }}
+            </div>
+            {% endif %}
+        </form>
+        <div class="text-center mt-3">
+            Don't have an account? <a href="{% url 'signupaccount' %}">Sign Up</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

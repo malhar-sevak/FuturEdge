@@ -1,0 +1,45 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4">🎯 Top Career Recommendations for You</h2>
+
+
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-8 mx-auto">
+      <div class="alert alert-info text-center" style="font-size: 1.1rem;">
+        <strong>Your Skills:</strong> <span style="color: #2d6cdf;">{{ skills }}</span><br>
+        <strong>Your Interests:</strong> <span style="color: #2d6cdf;">{{ interests }}</span>
+      </div>
+      <div class="text-center mt-3">
+        <a href="{% url 'career_history' %}" class="btn btn-success" style="font-weight: 500;">View My Past Recommendations</a>
+        <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary ms-2" style="font-weight: 500;">Back to Dashboard</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    {% for career, score, image_url in top_careers %}
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100 border-primary hover-effect">
+          <img src="{% static image_url %}" class="card-img-top" alt="{{ career }} image" style="object-fit:cover; height:180px; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem;">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ career }}</h5>
+            <p class="card-text text-muted">Recommendation Score: <strong>{{ score }}%</strong></p>
+            <a href="{% url 'courses' %}" class="btn btn-outline-primary mt-2">Explore {{ career }}</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .hover-effect:hover {
+    transform: scale(1.03);
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+  }
+</style>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<div class="container text-center mt-5">
+    <h1 class="display-4">Welcome to FuturEdge </h1>
+    <p class="lead">Discover your perfect career path with intelligent insights</p>
+    {% if user.is_authenticated %}
+    <a href="{% url 'career_recommendation' %}">Get Started</a>
+    {% else %}
+    <a href="{% url 'loginaccount' %}"> Get Started</a>
+    {% endif %}
+</div>
+
+<!-- Feature Cards -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Key Features</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card card-hover shadow p-3 h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Personalized Recommendations</h5>
+                    <p class="card-text">Get career suggestions tailored to your skills, interests, and goals.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-hover shadow p-3 h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Live Career Insights</h5>
+                    <p class="card-text">Access real-time job market trends and salary stats for each career path.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-hover shadow p-3 h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Track Your History</h5>
+                    <p class="card-text">View and manage your past career suggestions and track your progress.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- How It Works Section -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">How It Works</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-3 text-center">
+            <div class="mb-2" style="font-size:2.5rem;">📝</div>
+            <h5>1. Sign Up / Login</h5>
+            <p class="text-muted">Create your free account to get started.</p>
+        </div>
+        <div class="col-md-3 text-center">
+            <div class="mb-2" style="font-size:2.5rem;">📋</div>
+            <h5>2. Fill Out the Form</h5>
+            <p class="text-muted">Tell us about your education, skills, and interests.</p>
+        </div>
+        <div class="col-md-3 text-center">
+            <div class="mb-2" style="font-size:2.5rem;">🔍</div>
+            <h5>3. Get Recommendations</h5>
+            <p class="text-muted">Receive personalized career suggestions instantly.</p>
+        </div>
+        <div class="col-md-3 text-center">
+            <div class="mb-2" style="font-size:2.5rem;">🚀</div>
+            <h5>4. Explore & Grow</h5>
+            <p class="text-muted">Learn more about each career and take your next step.</p>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<!-- Testimonials -->
+<div class="container mt-5 mb-5">
+    <h2 class="text-center mb-4">What Our Users Say</h2>
+    {% if feedbacks %}
+    {% for i in feedbacks %}
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card testimonial-card shadow p-3">
+                <div class="card-body">
+                    <blockquote class="blockquote">
+                        <p>{{ i.message }}</p>
+                        <footer class="blockquote-footer">{{ i.user }}</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="col-md-6">
+            <div class="card testimonial-card shadow p-3">
+                <div class="card-body">
+                    <blockquote class="blockquote">
+                        <p>"Live salary insights and simple UI made it easy to choose between two options. Loved it!"</p>
+                        <footer class="blockquote-footer">Rajiv Mehta, Bangalore</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

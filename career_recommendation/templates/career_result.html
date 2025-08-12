@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Hello {{ name }}, here are your top career recommendations:</h2>
+  <ul>
+    {% for career, score in top_careers %}
+      <li><strong>{{ career }}</strong> - {{ score }}%</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
