@@ -1,9 +1,7 @@
-
 # FuturEdge: Career Path Recommendation System 
 
 
 A Django-based web application that predicts the top career paths for a user based on their qualification, skills, and interests using Machine Learning (RandomForestClassifier).
-
 
 
 ## Tech Stack
